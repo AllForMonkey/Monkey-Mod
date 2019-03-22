@@ -1,0 +1,12 @@
+{
+    "parent": "item/generated",
+    "textures":
+    {
+        "layer0": "afm:items/monkey_hand"
+    },
+    "overrides": [
+        { "predicate": { "damaged": 1, "damage": 0.25}, "model": "afm:item/monkey_hand_1"},
+        { "predicate": { "damaged": 1, "damage": 0.50}, "model": "afm:item/monkey_hand_2"}, 
+        { "predicate": { "damaged": 1, "damage": 0.75}, "model": "afm:item/monkey_hand_3"}  
+    ]
+}

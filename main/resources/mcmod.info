@@ -1,0 +1,16 @@
+[
+{
+  "modid": "afm",
+  "name": "Afm Mod",
+  "description": "Afm Mod.",
+  "version": "0.2",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["AllForMonkey"],
+  "credits": "AllForMonkey, MCvinnyq, Epicghost505, Hazar",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

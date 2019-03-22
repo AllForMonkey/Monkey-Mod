@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "variant=afm": { "model": "afm:ore_overworld_afm" }
+    }
+}

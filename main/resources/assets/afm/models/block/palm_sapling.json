@@ -1,0 +1,7 @@
+{
+    "parent": "block/cross",
+    "textures":
+    {
+        "cross": "afm:blocks/palm_sapling"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  A",
+        " S ",
+        "S  "
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:torch"
+        },
+        
+        "S": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "afm:standing_torch",
+        "count": 1
+    }
+}

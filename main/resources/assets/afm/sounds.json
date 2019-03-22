@@ -1,0 +1,22 @@
+{
+    "entity.monkey.ambient":
+    {
+        "category": "entity",
+        "subtitle": "entity.monkey.ambient",
+        "sounds": [{ "name": "afm:entity/monkey/ambient", "stream": true}]
+    },
+    
+    "entity.monkey.hurt":
+    {
+        "category": "entity",
+        "subtitle": "entity.monkey.hurt",
+        "sounds": [{ "name": "afm:entity/monkey/hurt", "stream": true}]
+    },
+    
+    "entity.monkey.death":
+    {
+        "category": "entity",
+        "subtitle": "entity.monkey.death",
+        "sounds": [{ "name": "afm:entity/monkey/death", "stream": true}]
+    }
+}
