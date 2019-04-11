@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "LLL",
+        "LLL",
+        "LLL"
+    ],
+    "key": {
+        "L": {
+            "item": "afm:palm_leaves"
+        }
+    },
+    "result": {
+        "item": "afm:camouflage",
+        "count": 1
+    }
+}
