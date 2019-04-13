@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AAA",
+        "AAA",
+        "AAA"
+    ],
+    "key": {
+        "A": {
+            "item": "afm:ingot_afm"
+        }
+    },
+    "result": {
+        "item": "afm:block_afm",
+        "count": 1
+    }
+}

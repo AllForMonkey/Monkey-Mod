@@ -1,0 +1,13 @@
+{
+  "id": "afm",
+  "name": "Example Mod",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "version": "1.0.0",
+  "side": "universal",
+  "initializers": [
+    "com.afm.AfmMod.Main"
+  ],
+  "requires": {
+    "fabric": "*"
+  }
+}
