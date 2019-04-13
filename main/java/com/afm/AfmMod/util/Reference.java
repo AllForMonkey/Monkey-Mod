@@ -9,4 +9,5 @@ public class Reference
 	public static final String COMMON = "com.afm.AfmMod.proxy.CommonProxy";
 	
 	public static final int ENTITY_MONKEY = 120;
+	public static final int ENTITY_POACHER = 121;
 }
