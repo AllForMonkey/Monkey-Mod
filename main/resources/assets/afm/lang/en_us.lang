@@ -1,18 +1,30 @@
-item.ingot_afm.name=Afm Ingot
-item.frozen_banana.name=Frozen Banana
-item.banana.name=Banana
+//Potions
 potion.effect.freeze_potion=Freeze Potion
 splash_potion.effect.freeze_potion=Splash Freeze Potion
 lingering_potion.effect.freeze_potion=Lingering Freeze Potion
 effect.freeze_potion=Freeze
 
+//Items
 item.monkey_hand.name=Monkey Hand
+item.ingot_afm.name=Afm Ingot
+item.frozen_banana.name=Frozen Banana
+item.banana.name=Banana
 
+//Armor
+item.tiki_mask.name=Tiki Mask
+item.camouflage.name=Camouflage
+
+//Entities
+entity.poacher.name=Poacher
+entity.monkey.name=Monkey
+
+//Creative Tabs
+itemGroup.afmmodtab=AfmMod
+
+//Blocks
 tile.block_afm.name=Afm Block
 tile.palm_sapling.name=Palm Sapling
-itemGroup.afmmodtab=AfmMod
 tile.ore_overworld_afm.name=Afm Ore
-entity.monkey.name=Monkey
 tile.standing_torch.name=Tiki Torch
 tile.palm_wood.name=Palm Wood
 tile.palm_planks.name=Palm Planks
