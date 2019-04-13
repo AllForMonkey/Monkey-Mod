@@ -37,7 +37,7 @@ public class WorldGenCustomStructures implements IWorldGenerator
 			
 		case 0:
 			
-			//generateStructure(MONKEY_SANCTUARY, world, random, chunkX, chunkZ, 0, Blocks.GRASS, BiomeJungle.class);
+			//generateStructure(MONKEY_SANCTUARY, world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeJungle.class);
 			
 			break;
 			
@@ -55,8 +55,7 @@ public class WorldGenCustomStructures implements IWorldGenerator
 		int y = calculateGenerationHeight(world, x, z, topBlock);
 		BlockPos pos = new BlockPos(x,y,z);
 		
-		Class<?> biome = world.provider.getBiomeForCoords(pos).getClass();
-		
+		Class<?> biome = world.provider.getBiomeForCoords(pos).getClass();		
 		if(world.getWorldType() != WorldType.FLAT)
 		{
 			if(classesList.contains(biome))

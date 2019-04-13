@@ -25,8 +25,6 @@ public class Main
 	@Instance
 	public static Main instance;
 	
-     public static Logger logger;
-	
 	@SidedProxy(clientSide = Reference.CLIENT, serverSide = Reference.COMMON)
 	public static CommonProxy proxy;
 	
@@ -34,7 +32,6 @@ public class Main
 	public static void preInit(FMLPreInitializationEvent event) 
 	{
 		RegistryHandler.preInitRegistries(event);
-        logger = event.getModLog();
 	}
 	
 	@EventHandler

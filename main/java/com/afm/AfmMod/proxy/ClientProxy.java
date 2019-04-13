@@ -11,33 +11,12 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class ClientProxy extends CommonProxy 
+
+public class ClientProxy extends CommonProxy
 {
 	@Override
-	public void registerItemRenderer(Item item, int meta, String id) 
+	public void registerModel(Item item, int metadata) 
 	{
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
+		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
-	
-	@Override
-	public void registerVariantRenderer(Item item, int meta,String filename, String id) 
-	{
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(Reference.MODID, filename), id));
-	}
-	
-	    public void preInit(FMLPreInitializationEvent event)
-	    {
-	        super.preInit();
-	        RenderHandler.registerEntityRenders();
-	    }
-
-	    public void init(FMLInitializationEvent event)
-	    {
-	        super.init();
-	    }
-
-	    public void postInit(FMLPostInitializationEvent event)
-	    {
-	        super.postInit();
-	    }
 }

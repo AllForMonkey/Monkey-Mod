@@ -1,6 +1,7 @@
 package com.afm.AfmMod.objects.blocks;
 
-import net.minecraft.block.Block;
+import com.afm.AfmMod.objects.blocks.BlockBase;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

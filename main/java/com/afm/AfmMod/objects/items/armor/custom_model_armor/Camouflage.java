@@ -30,7 +30,7 @@ public class Camouflage extends ItemArmor implements IHasModel
 	@Override
 	public void registerModels() 
 	{
-		Main.proxy.registerItemRenderer(this, 0, "inventory");
+		Main.proxy.registerModel(this, 0);
 	}
 
 	@Override

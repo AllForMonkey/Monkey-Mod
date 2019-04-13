@@ -2,7 +2,6 @@ package com.afm.AfmMod.util.handlers;
 
 import java.io.File;
 
-import com.afm.AfmMod.Config;
 import com.afm.AfmMod.Main;
 import com.afm.AfmMod.entity.EntityMonkey;
 import com.afm.AfmMod.init.BlockInit;
@@ -36,19 +35,19 @@ public class RegistryHandler
     public static Configuration config;
 	
 	@SubscribeEvent
-	public static void onItemRegister(RegistryEvent.Register<Item> event)
+	public static void registerItems(RegistryEvent.Register<Item> event)
 	{
 		event.getRegistry().registerAll(ItemInit.ITEMS.toArray(new Item[0]));
 	}
 	
 	@SubscribeEvent
-	public static void onBlockRegister(RegistryEvent.Register<Block> event)
+	public static void registerBlocks(RegistryEvent.Register<Block> event)
 	{
 		event.getRegistry().registerAll(BlockInit.BLOCKS.toArray(new Block[0]));
 	}
 	
 	@SubscribeEvent
-	public static void onModelRegister(ModelRegistryEvent event)
+	public static void registerModels(ModelRegistryEvent event)
 	{
 		for(Item item : ItemInit.ITEMS)
 		{
@@ -68,34 +67,22 @@ public class RegistryHandler
 	}
 	
 	public static void preInitRegistries(FMLPreInitializationEvent event)
-	{
-		Main.proxy.preInit();	
-		
+	{	
 		GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
 		
-		//config code :D
-		File directory = event.getModConfigurationDirectory();
-        config = new Configuration(new File(directory.getPath(), "afmmod.cfg"));
-        Config.readConfig();
-        
         //Init mate
+		EntityInit.registerEntities();
    		RenderHandler.registerEntityRenders();
 		PotionInit.registerPotions();
 	}
 	
 	public static void initRegistries(FMLInitializationEvent event)
 	{
-		Main.proxy.init();
 		SoundsHandler.registerSounds();
 	}
 	
 	public static void postInitRegistries(FMLPostInitializationEvent event)
 	{
-		Main.proxy.postInit();
-		
-	    {    
-            if (config.hasChanged()) {
-                config.save(); }}
 	}
 	
 	public static void serverRegistries(FMLServerStartingEvent event)

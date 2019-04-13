@@ -8,13 +8,9 @@ import com.afm.AfmMod.objects.blocks.AFMPalmPlanks;
 import com.afm.AfmMod.objects.blocks.AFMPalmSapling;
 import com.afm.AfmMod.objects.blocks.AFMStandingTorch;
 import com.afm.AfmMod.objects.blocks.AFMWood;
-import com.afm.AfmMod.objects.blocks.BlockBase;
-import com.afm.AfmMod.objects.items.ItemBase;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 
 public class BlockInit
 {

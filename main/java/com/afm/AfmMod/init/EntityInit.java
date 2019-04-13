@@ -2,6 +2,7 @@ package com.afm.AfmMod.init;
 
 import com.afm.AfmMod.Main;
 import com.afm.AfmMod.entity.EntityMonkey;
+import com.afm.AfmMod.entity.EntityPoacher;
 import com.afm.AfmMod.util.Reference;
 
 import net.minecraft.entity.Entity;

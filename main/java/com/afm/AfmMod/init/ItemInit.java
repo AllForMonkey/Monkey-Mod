@@ -8,11 +8,18 @@ import com.afm.AfmMod.objects.items.ItemBase;
 import com.afm.AfmMod.objects.items.ItemFoodBase;
 import com.afm.AfmMod.objects.items.ItemFrozenBanana;
 import com.afm.AfmMod.objects.items.ItemMonkeyHand;
+import com.afm.AfmMod.objects.items.armor.ArmorBase;
+import com.afm.AfmMod.objects.items.armor.custom_model_armor.Camouflage;
+import com.afm.AfmMod.objects.items.armor.custom_model_armor.TikiMask;
+import com.afm.AfmMod.util.Reference;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 
 public class ItemInit

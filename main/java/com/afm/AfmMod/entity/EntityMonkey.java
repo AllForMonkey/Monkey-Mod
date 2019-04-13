@@ -10,13 +10,10 @@ import com.afm.AfmMod.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
@@ -29,14 +26,12 @@ import net.minecraft.entity.ai.EntityAISit;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITargetNonTamed;
 import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -54,7 +49,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
-public class EntityMonkey extends EntityCreature implements IAnimals
+public class EntityMonkey extends EntityAnimal
 {
 	private static final DataParameter<Boolean> SITTING = EntityDataManager.<Boolean>createKey(EntityMonkey.class, DataSerializers.BOOLEAN);
 	private static final DataParameter <Boolean> MOVING = EntityDataManager.<Boolean>createKey(EntityMonkey.class, DataSerializers.BOOLEAN);
@@ -66,18 +61,8 @@ public class EntityMonkey extends EntityCreature implements IAnimals
     
 	public EntityMonkey(World worldIn) 
 	{
-		
 		super(worldIn);
-		this.setSize(0.4F, 0.7F);
-		
-        this.tasks.addTask(0, new EntityAITempt(this, 0.6F, ItemInit.Banana, true));
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIPanic(this, 1.2D));
-        this.tasks.addTask(3, new EntityAIWander(this, 1.0F));
-        this.tasks.addTask(4, new EntityAIWander(this, 1.25F));
-        this.tasks.addTask(5, new EntityAILookIdle(this));
-        this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 0.8D, 1.0000001E-5F));
-        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+		this.setSize(1F, 1F);
 	}
 	
 	
@@ -95,6 +80,21 @@ public class EntityMonkey extends EntityCreature implements IAnimals
         this.setVariant(compound.getInteger("Variant"));
     }
 	
+	
+	@Override
+	protected void initEntityAI() 
+	{
+        this.aiTempt = new EntityAITempt(this, 0.6D, ItemInit.Banana, true);
+        this.tasks.addTask(20, new EntityAIAvoidEntity(this, EntityPoacher.class, 15.0F, 1.0D, 1.2D));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(3, new EntityAIPanic(this, 1.2D));
+        this.tasks.addTask(7, new EntityAILeapAtTarget(this, 0.3F));
+        this.tasks.addTask(8, new EntityAIMate(this, 0.8D));
+        this.tasks.addTask(9, new EntityAILookIdle(this));
+        this.tasks.addTask(10, new EntityAIWanderAvoidWater(this, 0.8D, 1.0000001E-5F));
+        this.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+	}
+	
 	public void entityInit()
     {
         super.entityInit();
@@ -103,11 +103,6 @@ public class EntityMonkey extends EntityCreature implements IAnimals
         this.dataManager.register(DATA_STRENGTH_ID, Integer.valueOf(0));
         this.dataManager.register(DATA_VARIANT_ID, Integer.valueOf(0));
     }
-	
-	@Override
-	public float getRenderSizeModifier() {
-		 return 0.3F;
-	}
 	
 
     public int getStrength()
@@ -154,7 +149,7 @@ public class EntityMonkey extends EntityCreature implements IAnimals
             this.setSprinting(false);
         }
     }
-        
+    
     public int getVariant()
     {
         return MathHelper.clamp(((Integer)this.dataManager.get(DATA_VARIANT_ID)).intValue(), 0, 3);
@@ -195,6 +190,43 @@ public class EntityMonkey extends EntityCreature implements IAnimals
 		return false;
 	}
 
+
+	public boolean processInteract(EntityPlayer player, EnumHand hand)
+    {
+        ItemStack itemstack = player.getHeldItem(hand);
+
+        if (this.isTamed())
+        {
+            if (this.isOwner(player) && !this.world.isRemote && !this.isBreedingItem(itemstack))
+            {
+                ((EntityAISit) this.aiSit).setSitting(!this.isSneaking());
+            }
+        }
+        else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == ItemInit.Banana && player.getDistanceSq(this) < 9.0D)
+        {
+            if (!player.capabilities.isCreativeMode)
+            {
+                itemstack.shrink(1);
+            }
+
+            if (!this.world.isRemote)
+            {
+                if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player))
+                {
+                    this.world.setEntityState(this, (byte)7);
+                }
+                else
+                {
+                    this.world.setEntityState(this, (byte)6);
+                }
+            }
+
+            return true;
+        }
+
+        return super.processInteract(player, hand);
+    }
+    
 	private boolean isOwner(EntityPlayer player) {
 		return false;
 	}
@@ -256,7 +288,8 @@ public class EntityMonkey extends EntityCreature implements IAnimals
     public EntityMonkey createChild(EntityAgeable ageable)
     {
         EntityMonkey entitymonkey = new EntityMonkey(this.world);
-        EntityMonkey entitymonkey1 = (entitymonkey);
+        this.setOffspringAttributes(ageable, entitymonkey);
+        EntityMonkey entitymonkey1 = (EntityMonkey)ageable;
         int i = this.rand.nextInt(Math.max(this.getStrength(), entitymonkey1.getStrength())) + 1;
 
         if (this.rand.nextFloat() < 0.03F)
@@ -268,6 +301,10 @@ public class EntityMonkey extends EntityCreature implements IAnimals
         entitymonkey.setVariant(this.rand.nextBoolean() ? this.getVariant() : entitymonkey1.getVariant());
         return entitymonkey;
     }
+    
+    private void setOffspringAttributes(EntityAgeable ageable, EntityMonkey entitymonkey) 
+    {
+	}
 
 	static class GroupData implements IEntityLivingData
     {

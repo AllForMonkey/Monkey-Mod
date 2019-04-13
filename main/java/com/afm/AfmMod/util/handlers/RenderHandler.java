@@ -1,7 +1,10 @@
+    
 package com.afm.AfmMod.util.handlers;
 
 import com.afm.AfmMod.entity.EntityMonkey;
+import com.afm.AfmMod.entity.EntityPoacher;
 import com.afm.AfmMod.entity.render.RenderMonkey;
+import com.afm.AfmMod.entity.render.RenderPoacher;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

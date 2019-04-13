@@ -94,7 +94,6 @@ public class ModelMonkey extends ModelBase
     	
     	this.LeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     	this.RightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-  
     	
     	this.MonkeyHead.rotateAngleY = netHeadYaw * 0.017453292F;
     	this.MonkeyHead.rotateAngleX = headPitch * 0.017453292F;

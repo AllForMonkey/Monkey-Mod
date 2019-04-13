@@ -50,6 +50,6 @@ public class ItemMonkeyHand extends Item implements IHasModel
     @Override
     public void registerModels() 
 	{
-		Main.proxy.registerItemRenderer(this, 0, "inventory");
+    	Main.proxy.registerModel(this, 0);
 	}
 }
