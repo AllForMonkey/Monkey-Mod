@@ -8,4 +8,5 @@ import net.minecraft.world.storage.loot.LootTableList;
 public class LootTableHandler 
 {
 	public static final ResourceLocation MONKEY = LootTableList.register(new ResourceLocation(Reference.MODID, "monkey"));
+	public static final ResourceLocation POACHER = LootTableList.register(new ResourceLocation(Reference.MODID, "poacher"));
 }
