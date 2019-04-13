@@ -20,5 +20,13 @@ public class RenderHandler
 				return new RenderMonkey(manager);
 			}
 	    });
+		RenderingRegistry.registerEntityRenderingHandler(EntityPoacher.class, new IRenderFactory<EntityPoacher>()
+	    {
+			@Override
+			public Render<? super EntityPoacher> createRenderFor(RenderManager manager) 
+			{
+				return new RenderPoacher(manager);
+			}
+	    });
 	}
 }
