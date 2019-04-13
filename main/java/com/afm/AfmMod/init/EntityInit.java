@@ -13,6 +13,7 @@ public class EntityInit
 	public static void registerEntities()
 	{
 		registerEntity("monkey", EntityMonkey.class, Reference.ENTITY_MONKEY, 100, 11437146, 000000);
+		registerEntity("poacher", EntityPoacher.class, Reference.ENTITY_POACHER, 200, 3080386, 3115957);
 	}
 	
 	
